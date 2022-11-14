@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  server:
+    build:
+      dockerfile: dockerfile
+      context: ./
+    container_name: chattings
+    restart: unless-stopped
+    depends_on:
+      - mongodb
+    ports:
+      - '8000:80'
+    volumes:
+      - ./src:/app/src
+    command:
+      - 'npm'
+      - 'run'
+      - 'start:dev'
+  mongodb:
+    container_name: mongo_DB
+    image: mongo:4.2.1
+    ports:
+      - '27717:27017'
+    restart: on-failure
+    volumes:
+      - ./data/db:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: chatName
+      MONGO_INITDB_ROOT_PASSWORD: chatPass
+      MONGO_INITDB_DATABASE: chatting
