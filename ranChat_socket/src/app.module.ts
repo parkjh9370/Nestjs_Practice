@@ -21,7 +21,6 @@ import { AppController } from './app.controller';
 })
 export class AppModule implements NestModule {
   configure() {
-    // const DEBUG = process.env.MODE === 'dev' ? true : false;
     mongoose.set('debug', true);
   }
 }
