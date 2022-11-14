@@ -10,12 +10,11 @@ services:
     depends_on:
       - mongodb
     ports:
-      - '8000:80'
+      - '8000:8000'
     volumes:
       - ./src:/app/src
     command:
-      - 'npm'
-      - 'run'
+      - 'yarn'
       - 'start:dev'
   mongodb:
     container_name: mongo_DB
